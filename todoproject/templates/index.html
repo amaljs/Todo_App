@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 p-3">
+            <div class="mb-3 shadow p-4 bg-white">
+<form method="post">
+    {% csrf_token %}
+                    <input type="text" class="form-control" name="name" placeholder="Enter the task"><br>
+                  <input class="form-control mb-4" type="number" name="priority" placeholder="Enter the priority">
+                    <input type="date" class="form-control mb-4" name="date" placeholder="Enter the date">
+<input class="btn btn-secondary" type="submit">
+</form>
+</div>
+
+            </div>
+        <div class="col-md-6 p-4 " >
+            <p>Tasks :</p>
+            {% for i in task %}
+            <div class="card shadow-lg p-1 mb-2 bg-warning rounded " style="width: 80%;">
+
+  <div class="card-body">
+      <h5 class="card-title">{{i.t_date}}</h5>
+    <h5 class="card-title">{{i.t_name}}</h5>
+      <h5 class="card-title">{{i.t_priority}}</h5>
+      <h5 class="card-title">{{i.id}}</h5>
+
+     <a href="{% url 'delete' i.id %}" class="btn btn-danger">Done</a>
+      <a href="{% url 'update' i.id %}" class="btn btn-success">Update</a>
+  </div>
+</div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+<!-- <input type="text" name="name" placeholder="Enter the task">-->
+<!--    <input type="number" name="priority" placeholder="Enter the priority">-->
+<!--    <br>-->
+<!--    <input type="submit">-->
